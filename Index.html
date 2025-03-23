@@ -1,18 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <link rel="stylesheet" href="styles.css">
-    <title>Proyecto (PROTOTIPO)</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flor Grande con Tallo, Hoja y Fondo Degradado</title>
+
+  <!-- Enlazamos el CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container">
+    <!-- Flor, cuyos pétalos se generarán dinamicamente -->
+    <div class="flor" id="flor"></div>
+    <!-- Tallo curvo mediante SVG -->
+    <svg class="tallo" viewBox="0 0 160 240" preserveAspectRatio="xMidYMin slice">
+      <!-- La ruta parte en (80,0), que es el centro inferior de la flor -->
+      <path class="tallo-path" d="M 80 0 C 80 80, 0 160, 80 240" />
+    </svg>
+    <!-- Hoja en el tallo -->
+    <div class="hoja"></div>
+  </div>
+
+  <!-- Enlazamos el JavaScript -->
+  <script src="script.js"></script>
 </body>
-    <h1>La Educación Emocional</h1>
-<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 10px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGBH7hz4dA&#x2F;iBVVTNBGxCiqOycz9Pxh2g&#x2F;view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGBH7hz4dA&#x2F;iBVVTNBGxCiqOycz9Pxh2g&#x2F;view?utm_content=DAGBH7hz4dA&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener"></a>
 </html>
