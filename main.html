@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flor Grande con Tallo, Hoja y Fondo Degradado</title>
+  <style>
+
+    /* Fondo degradado: de negro a un rojo muy leve */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #000000, #330000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* Contenedor que agrupa la flor, el tallo y la hoja */
+    .container {
+      position: relative;
+      width: 160px;    /* Ancho igual al de la flor */
+      height: 400px;   /* 160px (flor) + 240px (tallo) = 400px */
+    }
+    
+    /* Flor: círculo amarillo con efecto neón */
+    .flor {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 160px;
+      background: yellow;
+      border-radius: 50%;
+      box-shadow: 0 0 40px yellow, 0 0 60px yellow;
+      animation: brillar 1s infinite alternate;
+      z-index: 1;
+    }
+    
+    @keyframes brillar {
+      0% {
+        box-shadow: 0 0 40px rgb(255, 0, 0), 0 0 60px rgb(255, 153, 0);
+      }
+      100% {
+        box-shadow: 0 0 60px yellow, 0 0 100px rgb(255, 255, 154);
+      }
+    }
+    
+    /* Pétalos generados dinámicamente */
+    .petalo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 120px;  /* Escalado desde la versión anterior */
+      height: 60px;  /* Escalado proporcionalmente */
+      background: yellow;
+      border-radius: 60px 60px 0 0;
+      box-shadow: 0 0 20px yellow;
+      transform-origin: center bottom;
+    }
+    
+    /* Tallo: SVG posicionado justo debajo de la flor */
+    svg.tallo {
+      position: absolute;
+      top: 160px; /* Inicia donde termina la flor (160px de alto) */
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+      overflow: visible;
+      width: 160px;
+      height: 240px;
+      z-index: -1;
+    }
+    
+    .tallo-path {
+      fill: none;
+      stroke: lightgreen;
+      stroke-width: 16;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 20px lightgreen) drop-shadow(0 0 40px lightgreen);
+    }
+    
+    /* Hoja en el tallo */
+    .hoja {
+      position: absolute;
+      top: 230px;       /* Aproximadamente en la mitad del tallo */
+      left: -30px;      /* Posicionada al costado izquierdo */
+      width: 80px;
+      height: 40px;
+      background: lightgreen;
+      border-radius: 40px;
+      /* Ajustamos la transformación para que la hoja apunte hacia arriba */
+      transform: rotate(-130deg) scaleY(-1);
+      box-shadow: 0 0 15px lightgreen;
+      z-index: -1;
+    }
+
+    .hoja2 {
+      position: absolute;
+      top: 260px;       /* Aproximadamente en la mitad del tallo */
+      left: 60px;      /* Posicionada al costado izquierdo */
+      width: 80px;
+      height: 40px;
+      background: lightgreen;
+      border-radius: 40px;
+      /* Ajustamos la transformación para que la hoja apunte hacia arriba */
+      transform: rotate(170deg) scaleY(-1);
+      box-shadow: 0 0 15px lightgreen;
+      z-index: -1;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Flor, cuyos pétalos se generarán dinámicamente -->
+    <div class="flor" id="flor"></div>
+    <!-- Tallo curvo mediante SVG -->
+    <svg class="tallo" viewBox="0 0 160 240" preserveAspectRatio="xMidYMin slice">
+      <!-- La ruta parte en (80,0), que es el centro inferior de la flor -->
+      <path class="tallo-path" d="M 80 0 C 80 80, 0 160, 80 240" />
+    </svg>
+    <!-- Hoja en el tallo -->
+    <div class="hoja"></div>
+    <div class="hoja2"></div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const flor = document.getElementById("flor");
+      const numPetalos = 8;    // Se generarán 8 pétalos
+      const distancia = 80;    // Distancia desde el centro de la flor (radio = 80px)
+  
+      for (let i = 0; i < numPetalos; i++) {
+        const petalo = document.createElement("div");
+        petalo.classList.add("petalo");
+        const angulo = i * (360 / numPetalos);
+        // Se posicionan los pétalos de forma circular
+        petalo.style.transform = `translate(-50%, -100%) rotate(${angulo}deg) translateY(${distancia}px)`;
+        flor.appendChild(petalo);
+      }
+    });
+  </script>
+</body>
+</html>
